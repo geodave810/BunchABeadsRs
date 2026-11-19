@@ -1,0 +1,88 @@
+# Builds and tests Bunch-a-Beads on Windows, Linux and macOS every time you
+# push to GitHub. When you push a version tag (e.g. v1.0.0), it also creates a
+# GitHub Release with ready-to-run downloads for all three.
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to publish release downloads
+
+jobs:
+  # Checks that the web version still compiles (publishing it is web.yml).
+  web-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo check -p beads-app --target wasm32-unknown-unknown
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            name: windows
+          - os: ubuntu-latest
+            name: linux
+          - os: macos-latest
+            name: macos
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Linux libraries needed by the window and file dialogs
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
+            libxkbcommon-dev libssl-dev libgtk-3-dev
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Run the tests
+        run: cargo test --workspace
+
+      - name: Build the release program
+        run: cargo build --release
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist | Out-Null
+          Copy-Item target/release/BunchABeads.exe, README.md, LICENSE dist/
+          # The sample beads, clasps, crimps, pendants and designs.
+          Copy-Item -Recurse beads-app/web-samples dist/BAB_library
+          Compress-Archive -Path dist/* -DestinationPath BunchABeads-windows.zip
+
+      - name: Package (Linux / macOS)
+        if: runner.os != 'Windows'
+        run: |
+          mkdir -p dist
+          cp target/release/BunchABeads README.md LICENSE dist/
+          # The sample beads, clasps, crimps, pendants and designs.
+          cp -R beads-app/web-samples dist/BAB_library
+          tar -czf BunchABeads-${{ matrix.name }}.tar.gz -C dist .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BunchABeads-${{ matrix.name }}
+          path: BunchABeads-${{ matrix.name }}.*
+
+      - name: Attach to the GitHub Release (version tags only)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: BunchABeads-${{ matrix.name }}.*
+          generate_release_notes: true   # lists the changes since the last version

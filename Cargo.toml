@@ -1,0 +1,26 @@
+[workspace]
+resolver = "2"
+members = ["beads-core", "beads-app"]
+
+[workspace.package]
+version = "0.17.0"
+edition = "2021"
+license = "MIT"   # see LICENSE; change both if you pick a different open-source license
+authors = ["David Bunch"]
+
+[profile.dev.package."*"]
+opt-level = 2   # dependencies (image decoding, egui) run fast even in debug builds
+
+[profile.dev.package.beads-core]
+opt-level = 2   # Bead Maker and colour analysis stay quick in debug builds
+
+[profile.release]
+lto = true          # smaller, faster program (slower to build, only for releases)
+codegen-units = 1
+strip = true        # leave out debugging information
+
+# The web build: like release, but keeps the WebAssembly feature list that
+# wasm-bindgen reads (wasm-opt still shrinks the program afterwards).
+[profile.web-release]
+inherits = "release"
+strip = "debuginfo"

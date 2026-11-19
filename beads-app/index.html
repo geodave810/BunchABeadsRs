@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Bunch-a-Beads Pattern Designer</title>
+
+    <!-- Trunk builds the program (the BunchABeads binary) for the web and copies the icon. -->
+    <!-- wasm-opt shrinks the program; newer Rust uses WebAssembly features that it
+         must be told about (all current browsers support them). -->
+    <link data-trunk rel="rust" data-bin="BunchABeads" data-cargo-profile="web-release" data-wasm-opt="2"
+          data-wasm-opt-params="--enable-bulk-memory --enable-nontrapping-float-to-int --enable-sign-ext --enable-reference-types --enable-multivalue --enable-mutable-globals" />
+    <link data-trunk rel="icon" href="assets/icon.png" />
+    <!-- The sample beads, clasps, crimps and pendants (downloaded when the page opens). -->
+    <link data-trunk rel="copy-dir" href="web-samples" />
+    <!-- Tells Apache web servers what a .wasm file is (ignored elsewhere). -->
+    <link data-trunk rel="copy-file" href="web-extra/.htaccess" />
+
+    <style>
+        html, body { overflow: hidden; margin: 0; padding: 0; height: 100%; width: 100%; background: #f0f0f0; }
+        canvas { display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        #loading_text {
+            position: absolute; top: 45%; left: 0; right: 0; text-align: center;
+            font-family: "Segoe UI", Ubuntu, sans-serif; font-size: 20px; color: #444;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="the_canvas_id"></canvas>
+    <div id="loading_text">Loading Bunch-a-Beads…</div>
+</body>
+</html>

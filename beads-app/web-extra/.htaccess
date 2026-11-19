@@ -1,0 +1,6 @@
+# For Apache web servers: the browser only runs the program if .wasm files are
+# sent as "application/wasm". Compressing the program also makes the page load faster.
+AddType application/wasm .wasm
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE application/wasm application/javascript text/html text/plain
+</IfModule>

@@ -1,0 +1,10 @@
+[package]
+name = "beads-core"
+description = "Bead pattern logic for Bunch-a-Beads (no GUI, no dependencies)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+# Intentionally empty: this crate builds for desktop, web (wasm) and Android unchanged.

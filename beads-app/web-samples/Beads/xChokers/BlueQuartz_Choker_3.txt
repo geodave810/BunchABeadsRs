@@ -1,0 +1,4 @@
+BlueQuartz_Choker_3.png
+43 1 Pixel Width and Shift Adjustment
+195 Pixel Height
+48 Pixel Offset from Top

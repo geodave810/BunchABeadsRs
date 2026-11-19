@@ -1,0 +1,27 @@
+; Bunch-a-Beads design file
+; Plain text. Beads are stored by name; empty pattern slots are left blank.
+
+[Design]
+version = 2
+; linear, mirrored, two patterns or manual
+mode = two patterns
+; the pattern (1-5) drawn by the linear and mirrored modes
+active_pattern = 2
+length_inches = 18
+left_adjust = 0
+right_adjust = 0
+bottom_adjust = 0
+clasp = CopperToggleTextured18mm
+use_clasp = true
+crimp = Crimp1x2
+crimps_per_end = 2
+background = White
+pendant = Angelite_31x60mmPendant
+use_pendant = true
+
+[Patterns]
+pattern1 = DenimLapis6mmRD | LavaRocks8mmRD | LavaRocks8mmRD | DenimLapis6mmRD
+pattern2 =  | RoseQuartz8mmRD | RoseQuartz8mmRD | Coral_6mmRD | Coral_6mmRD | RoseQuartz8mmRD | RoseQuartz8mmRD | RoseQuartz8mmRD | Coral_6mmRD | Coral_6mmRD | Coral_6mmRD | RoseQuartz8mmRD
+pattern3 = 
+pattern4 = 
+pattern5 = 

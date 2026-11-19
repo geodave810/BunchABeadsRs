@@ -1,0 +1,27 @@
+; Bunch-a-Beads design file
+; Plain text. Beads are stored by name; empty pattern slots are left blank.
+
+[Design]
+version = 2
+; linear, mirrored, two patterns or manual
+mode = mirrored
+; the pattern (1-5) drawn by the linear and mirrored modes
+active_pattern = 1
+length_inches = 18
+left_adjust = 0
+right_adjust = 0
+bottom_adjust = 0
+clasp = CopperToggleTextured18mm
+use_clasp = true
+crimp = Crimp1x2
+crimps_per_end = 2
+background = White
+pendant = Agate_27x50mmPendant
+use_pendant = false
+
+[Patterns]
+pattern1 = RoseQuartz_10x7mmChip | SnowflakeObsidian_8x5mmFacetRondelle | RedJasper_10mmRD | RoseQuartz_12x8mmOval | RoseQuartz_10x7mmChip | SnowflakeObsidian_8x5mmFacetRondelle | SnowflakeObsidian_8x5mmFacetRondelle | RoseQuartz_12x8mmOval | RoseQuartz_12x8mmOval | RoseQuartz_10x7mmChip
+pattern2 = 
+pattern3 = 
+pattern4 = 
+pattern5 = 

@@ -1,0 +1,4 @@
+Angelite_31x60mmPendant.png
+0 -181 Pixel Width and Shift Adjustment
+710 Pixel Height
+288 Pixel Offset from Top

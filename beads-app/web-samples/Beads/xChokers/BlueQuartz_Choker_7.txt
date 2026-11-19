@@ -1,0 +1,4 @@
+BlueQuartz_Choker_7.png
+45 0 Pixel Width and Shift Adjustment
+343 Pixel Height
+123 Pixel Offset from Top

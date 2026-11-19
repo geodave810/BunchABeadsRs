@@ -1,0 +1,4 @@
+Agate_27x50mmPendant.png
+0 -156 Pixel Width and Shift Adjustment
+592 Pixel Height
+262 Pixel Offset from Top
