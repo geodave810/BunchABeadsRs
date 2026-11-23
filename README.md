@@ -324,5 +324,16 @@ Everything needed is already in the project:
 - **macOS:** the download is for Apple Silicon Macs (M1 and newer). The program isn't signed by Apple, so the first time, right-click it and choose **Open**, or allow it under **System Settings > Privacy & Security**.
 - **Linux:** built on Ubuntu; it runs on recent Ubuntu, Mint, Debian and similar. Make it runnable with `chmod +x BunchABeads` if needed.
 
+## Support This Project ☕
+
+This project is released as open source and free to use.
+
+If you find it useful and would like to support continued development,
+documentation, and future improvements, you can:
+
+☕ **Buy me a coffee:** <https://buymeacoffee.com/geodave>
+
+Support is entirely optional, but always appreciated.
+
 ## License
 MIT, see `LICENSE`. Copyright (c) 2013-2026 David Bunch.
